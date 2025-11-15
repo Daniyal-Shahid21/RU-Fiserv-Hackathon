@@ -1,0 +1,32 @@
+Smart Campus Wallet APP
+	Digital Wallets:
+		Send cash	
+		Spend cash
+		Receive Cash
+		***Analyze balances {Where money is coming from and going} {AI Summary}
+		Different types of accounts
+
+
+	"Smart" Digital Wallets:
+		+ Everything a digital wallet has 
+		Automated payments
+		Budgeting + Email notifs for fuckups
+		Splitting payments 
+		***Predicting next weeks allotment of money based off of spending habits
+			Spending prediction VS How much you should spend
+				Being able to set how fiscal you want to be
+		***Allow data export to CSV
+			{AI Summary of CSV}
+
+
+	"Smart Campus Companion Digital Wallet"
+		+ Everything from before
+		***Credit scores + cash back incentives for proper campus spenders
+		Loan payment options/analysis
+		 - On campus employment job hub
+		On campus event hub {Pay for the events digitally using credit}
+		Student service hub {Dining hall, textbook purchases, printing, parking passes, TAP TO PAY VENDING 		MACHINES}
+		"Volunteering provides credits"
+		
+		
+		
