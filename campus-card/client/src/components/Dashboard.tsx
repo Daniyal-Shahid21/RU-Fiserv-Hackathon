@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 // import Navbar from "./Navbar";
 
 type Transaction = {
@@ -7,44 +7,41 @@ type Transaction = {
   category: string;
   amount: number;
   location: string;
-  date: string; // ISO string
+  date: string; // ISO string from backend
 };
 
-const fakeTransactions: Transaction[] = [
-  {
-    id: 1,
-    merchant: "Campus Bookstore",
-    category: "Books",
-    amount: -58.4,
-    location: "RU Main",
-    date: "2025-11-16T10:35:00Z",
-  },
-  {
-    id: 2,
-    merchant: "Dining Hall",
-    category: "Food",
-    amount: -12.75,
-    location: "RU East",
-    date: "2025-11-16T12:10:00Z",
-  },
-  {
-    id: 3,
-    merchant: "Campus Payroll",
-    category: "Stipend",
-    amount: 120.0,
-    location: "RU Finance",
-    date: "2025-11-16T09:00:00Z",
-  },
-  // ...add up to 20 as placeholders, will be replaced by API later
-];
+const API_BASE_URL =
+  (import.meta.env.VITE_API_BASE_URL as string) || "http://127.0.0.1:5000";
 
 const Dashboard: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const today = new Date().toISOString().slice(0, 10);
 
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/transactions/recent`);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch transactions: ${res.status}`);
+        }
+        const data = (await res.json()) as Transaction[];
+        setTransactions(data);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "Error loading transactions");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
   const { todayTotal, todayIn, todayOut } = useMemo(() => {
-    const todaysTx = fakeTransactions.filter((t) =>
-      t.date.startsWith(today)
-    );
+    const todaysTx = transactions.filter((t) => t.date.startsWith(today));
     const total = todaysTx.reduce((acc, t) => acc + t.amount, 0);
     const incoming = todaysTx
       .filter((t) => t.amount > 0)
@@ -54,9 +51,9 @@ const Dashboard: React.FC = () => {
       .reduce((acc, t) => acc + t.amount, 0);
 
     return { todayTotal: total, todayIn: incoming, todayOut: outgoing };
-  }, [today]);
+  }, [transactions, today]);
 
-  const latest20 = fakeTransactions.slice(0, 20);
+  const latest20 = transactions.slice(0, 20);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
@@ -95,9 +92,7 @@ const Dashboard: React.FC = () => {
                 <p className="text-[11px] text-prussian font-semibold uppercase tracking-[0.18em]">
                   Credit Score
                 </p>
-                <p className="mt-1 text-lg font-semibold text-prussian">
-                  742
-                </p>
+                <p className="mt-1 text-lg font-semibold text-prussian">742</p>
                 <p className="mt-1 text-[11px] text-slate-500">
                   Very good – keep it up.
                 </p>
@@ -192,47 +187,60 @@ const Dashboard: React.FC = () => {
               <div className="mt-3 border-t border-slate-100" />
 
               <div className="mt-2 overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead className="text-slate-500">
-                    <tr className="text-left">
-                      <th className="py-2 pr-2">Date</th>
-                      <th className="py-2 pr-2">Merchant</th>
-                      <th className="py-2 pr-2 hidden md:table-cell">
-                        Category
-                      </th>
-                      <th className="py-2 pr-2 hidden md:table-cell">
-                        Location
-                      </th>
-                      <th className="py-2 text-right">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {latest20.map((t) => (
-                      <tr
-                        key={t.id}
-                        className="border-t border-slate-100 last:border-b hover:bg-slate-50/60"
-                      >
-                        <td className="py-2 pr-2">
-                          {new Date(t.date).toLocaleDateString()}
-                        </td>
-                        <td className="py-2 pr-2">{t.merchant}</td>
-                        <td className="py-2 pr-2 hidden md:table-cell">
-                          {t.category}
-                        </td>
-                        <td className="py-2 pr-2 hidden md:table-cell">
-                          {t.location}
-                        </td>
-                        <td
-                          className={`py-2 text-right font-semibold ${
-                            t.amount < 0 ? "text-rose-500" : "text-emerald-600"
-                          }`}
-                        >
-                          {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount).toFixed(2)}
-                        </td>
+                {loading && (
+                  <p className="text-xs text-slate-500 py-4">
+                    Loading transactions...
+                  </p>
+                )}
+                {error && !loading && (
+                  <p className="text-xs text-rose-500 py-4">{error}</p>
+                )}
+                {!loading && !error && (
+                  <table className="w-full text-xs">
+                    <thead className="text-slate-500">
+                      <tr className="text-left">
+                        <th className="py-2 pr-2">Date</th>
+                        <th className="py-2 pr-2">Merchant</th>
+                        <th className="py-2 pr-2 hidden md:table-cell">
+                          Category
+                        </th>
+                        <th className="py-2 pr-2 hidden md:table-cell">
+                          Location
+                        </th>
+                        <th className="py-2 text-right">Amount</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {latest20.map((t) => (
+                        <tr
+                          key={t.id}
+                          className="border-t border-slate-100 last:border-b hover:bg-slate-50/60"
+                        >
+                          <td className="py-2 pr-2">
+                            {new Date(t.date).toLocaleDateString()}
+                          </td>
+                          <td className="py-2 pr-2">{t.merchant}</td>
+                          <td className="py-2 pr-2 hidden md:table-cell">
+                            {t.category}
+                          </td>
+                          <td className="py-2 pr-2 hidden md:table-cell">
+                            {t.location}
+                          </td>
+                          <td
+                            className={`py-2 text-right font-semibold ${
+                              t.amount < 0
+                                ? "text-rose-500"
+                                : "text-emerald-600"
+                            }`}
+                          >
+                            {t.amount < 0 ? "-" : "+"}$
+                            {Math.abs(t.amount).toFixed(2)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </div>
             </div>
 
@@ -266,7 +274,9 @@ const Dashboard: React.FC = () => {
                   </span>
                   <span
                     className={`font-semibold ${
-                      todayTotal >= 0 ? "text-emerald-600" : "text-rose-500"
+                      todayTotal >= 0
+                        ? "text-emerald-600"
+                        : "text-rose-500"
                     }`}
                   >
                     {todayTotal >= 0 ? "+" : "-"}$
