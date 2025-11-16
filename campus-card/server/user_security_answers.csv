@@ -1,0 +1,61 @@
+id,user_id,question_id,question,answer
+1,1,1,"If you could create a new holiday, what would it celebrate?",Tech Innovation Day
+2,1,2,What is the first word of the first book you ever read on your own?,Once
+3,1,3,"If you had a secret hideout as a child, where was it located?",Attic
+4,2,1,"If you could create a new holiday, what would it celebrate?",Financial Literacy Day
+5,2,2,What is the first word of the first book you ever read on your own?,The
+6,2,3,"If you had a secret hideout as a child, where was it located?",Treehouse
+7,3,1,"If you could create a new holiday, what would it celebrate?",Robotics Week
+8,3,2,What is the first word of the first book you ever read on your own?,My
+9,3,3,"If you had a secret hideout as a child, where was it located?",Garage
+10,4,1,"If you could create a new holiday, what would it celebrate?",Wellness Day
+11,4,2,What is the first word of the first book you ever read on your own?,Alice
+12,4,3,"If you had a secret hideout as a child, where was it located?",Basement
+13,5,1,"If you could create a new holiday, what would it celebrate?",Content Creators Day
+14,5,2,What is the first word of the first book you ever read on your own?,Story
+15,5,3,"If you had a secret hideout as a child, where was it located?",Library nook
+16,6,1,"If you could create a new holiday, what would it celebrate?",AI Awareness Day
+17,6,2,What is the first word of the first book you ever read on your own?,Data
+18,6,3,"If you had a secret hideout as a child, where was it located?",Closet
+19,7,1,"If you could create a new holiday, what would it celebrate?",Investing Day
+20,7,2,What is the first word of the first book you ever read on your own?,Money
+21,7,3,"If you had a secret hideout as a child, where was it located?",Attic
+22,8,1,"If you could create a new holiday, what would it celebrate?",Open Source Day
+23,8,2,What is the first word of the first book you ever read on your own?,Code
+24,8,3,"If you had a secret hideout as a child, where was it located?",Treehouse
+25,9,1,"If you could create a new holiday, what would it celebrate?",Economics Awareness Day
+26,9,2,What is the first word of the first book you ever read on your own?,Numbers
+27,9,3,"If you had a secret hideout as a child, where was it located?",Backyard shed
+28,10,1,"If you could create a new holiday, what would it celebrate?",Mental Health Day
+29,10,2,What is the first word of the first book you ever read on your own?,Happy
+30,10,3,"If you had a secret hideout as a child, where was it located?",Closet
+31,11,1,"If you could create a new holiday, what would it celebrate?",Cybersecurity Day
+32,11,2,What is the first word of the first book you ever read on your own?,Hack
+33,11,3,"If you had a secret hideout as a child, where was it located?",Garage
+34,12,1,"If you could create a new holiday, what would it celebrate?",Problem Solving Day
+35,12,2,What is the first word of the first book you ever read on your own?,Math
+36,12,3,"If you had a secret hideout as a child, where was it located?",Treehouse
+37,13,1,"If you could create a new holiday, what would it celebrate?",Productivity Day
+38,13,2,What is the first word of the first book you ever read on your own?,Automation
+39,13,3,"If you had a secret hideout as a child, where was it located?",Garage
+40,14,1,"If you could create a new holiday, what would it celebrate?",Media Appreciation Day
+41,14,2,What is the first word of the first book you ever read on your own?,Story
+42,14,3,"If you had a secret hideout as a child, where was it located?",Attic
+43,15,1,"If you could create a new holiday, what would it celebrate?",Space Exploration Day
+44,15,2,What is the first word of the first book you ever read on your own?,Rocket
+45,15,3,"If you had a secret hideout as a child, where was it located?",Basement
+46,16,1,"If you could create a new holiday, what would it celebrate?",Engineering Day
+47,16,2,What is the first word of the first book you ever read on your own?,Circuit
+48,16,3,"If you had a secret hideout as a child, where was it located?",Garage
+49,17,1,"If you could create a new holiday, what would it celebrate?",Data Day
+50,17,2,What is the first word of the first book you ever read on your own?,Numbers
+51,17,3,"If you had a secret hideout as a child, where was it located?",Backyard shed
+52,18,1,"If you could create a new holiday, what would it celebrate?",Statistics Day
+53,18,2,What is the first word of the first book you ever read on your own?,Graph
+54,18,3,"If you had a secret hideout as a child, where was it located?",Closet
+55,19,1,"If you could create a new holiday, what would it celebrate?",Mobile Development Day
+56,19,2,What is the first word of the first book you ever read on your own?,App
+57,19,3,"If you had a secret hideout as a child, where was it located?",Treehouse
+58,20,1,"If you could create a new holiday, what would it celebrate?",Community Advocacy Day
+59,20,2,What is the first word of the first book you ever read on your own?,People
+60,20,3,"If you had a secret hideout as a child, where was it located?",Basement

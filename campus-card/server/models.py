@@ -66,3 +66,51 @@ class Transaction(Base):
 
     user = relationship("User")
     wallet = relationship("Wallet")
+
+class SecurityQuestion(Base):
+    __tablename__ = "security_questions"
+
+    id = Column(Integer, primary_key=True)
+    question = Column(Text)
+
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
+    major = Column(String)
+    class_year = Column(Integer)
+    residence_type = Column(String)
+    employment_status = Column(String)
+    prefers_volunteering = Column(String)       # or Boolean if you convert
+    campus_engagement_level = Column(String)
+    academic_focus = Column(String)
+    social_preference = Column(String)
+    financial_mindset = Column(String)
+
+    user = relationship("User", backref="profile")
+
+
+class UserSecurityAnswer(Base):
+    __tablename__ = "user_security_answers"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    question_id = Column(Integer, ForeignKey("security_questions.id"), nullable=False)
+    answer = Column(Text)
+
+    user = relationship("User")
+    question = relationship("SecurityQuestion")
+
+
+class Event(Base):
+    __tablename__ = "events"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    category = Column(String)
+    is_volunteering = Column(Integer)
+    location = Column(String)
+    start_time = Column(DateTime)
+    cost = Column(Numeric)
+    volunteering_hours = Column(Integer)

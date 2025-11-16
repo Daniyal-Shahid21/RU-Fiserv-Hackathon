@@ -1,0 +1,21 @@
+event_id,name,category,is_volunteering,location,start_time,cost,volunteering_hours
+1,Tech and Innovation Mixer,Tech,1,Business School Atrium,11/5/2025 17:00,0,4
+2,Career Networking Night,Career,0,Campus Center,11/6/2025 18:00,15,0
+3,Financial Wellness Workshop,Finance,0,Innovation Hub,11/7/2025 16:00,0,0
+4,HackFest Info Session,Tech,0,Innovation Hub,11/1/2025 15:00,0,0
+5,Study Skills Bootcamp,Academic,0,Library,11/8/2025 11:00,0,0
+6,Esports Tournament,Sports,0,Rec Center,11/9/2025 19:00,5,0
+7,Yoga and Mindfulness,Wellness,0,Rec Center,11/3/2025 8:00,25,0
+8,Cultural Night,Cultural,0,Campus Center,11/9/2025 18:00,0,0
+9,Women in Tech Panel,Tech,0,Business School Atrium,11/4/2025 17:30,5,0
+10,Entrepreneurship 101,Career,0,Innovation Hub,11/2/2025 14:00,0,0
+11,Resume and LinkedIn Clinic,Career,1,Campus Center,11/5/2025 13:00,0,6
+12,Music on the Green,Social,0,Quad,11/6/2025 19:00,4,0
+13,Campus Cleanup Day,Community,0,Quad,11/2/2025 10:00,0,0
+14,Intro to Personal Finance,Finance,0,Innovation Hub,11/3/2025 16:00,0,0
+15,Data Science Club Meetup,Tech,0,Innovation Hub,11/7/2025 18:00,30,0
+16,Movie Night,Social,1,Student Union,11/8/2025 20:00,0,7
+17,Leadership Workshop,Academic,0,Business School Atrium,11/1/2025 12:00,0,0
+18,Healthy Eating on a Budget,Wellness,0,Campus Center,11/4/2025 12:30,0,0
+19,Campus Job Fair,Career,1,Campus Center,11/9/2025 13:00,0,3
+20,Library Late Night Study,Academic,0,Library,11/10/2025 21:00,21,0
