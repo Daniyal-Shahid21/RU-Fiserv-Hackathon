@@ -7,6 +7,7 @@ import WelcomePage from "./components/WelcomePage";
 import Dashboard from "./components/Dashboard";
 import BalanceAnalysisPage from "./components/BalanceAnalysisPage";
 import Profile from "./components/Profile";
+import BoardingPage from "./components/BoardingPage";
 // import CreditScorePage from "./components/CreditScorePage";
 // import CreditTransfersPage from "./components/CreditTransfersPage";
 // import StudentServicesPage from "./components/StudentServicesPage";
@@ -47,7 +48,14 @@ const App: React.FC = () => {
             path="/profile"
             element={isAuthenticated ? <Profile /> : <WelcomePage />}
           />
+
+
+          <Route
+            path="/boarding"
+            element={isAuthenticated ? <BoardingPage /> : <WelcomePage />}
+          />
         </Routes>
+
       </main>
     </div>
   );
