@@ -18,13 +18,6 @@ class School(Base):
     school_name = Column(String)
 
 
-class Bank(Base):
-    __tablename__ = "banks"
-
-    id = Column(Integer, primary_key=True)
-    bank_name = Column(String)
-
-
 class Wallet(Base):
     __tablename__ = "wallets"
 
@@ -44,13 +37,12 @@ class User(Base):
     phone_number = Column(String)
 
     school_id = Column(Integer, ForeignKey("schools.id"))
-    bank_id = Column(Integer, ForeignKey("banks.id"))
     wallet_id = Column(Integer, ForeignKey("wallets.id"))
 
     school = relationship("School")
-    bank = relationship("Bank")
     wallet = relationship("Wallet")
 
+    friend_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
 class Transaction(Base):
     __tablename__ = "transactions"
@@ -81,12 +73,7 @@ class UserProfile(Base):
     major = Column(String)
     class_year = Column(Integer)
     residence_type = Column(String)
-    employment_status = Column(String)
-    prefers_volunteering = Column(String)       # or Boolean if you convert
-    campus_engagement_level = Column(String)
-    academic_focus = Column(String)
-    social_preference = Column(String)
-    financial_mindset = Column(String)
+    interests = Column(String)
 
     user = relationship("User", backref="profile")
 
