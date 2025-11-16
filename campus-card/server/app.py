@@ -110,7 +110,7 @@ def transactions_summary():
         temperature=0.4,
     )
 
-    summary = response.choices[0].message["content"]
+    summary = response.choices[0].message.content
 
     return jsonify({"summary": summary})
 
