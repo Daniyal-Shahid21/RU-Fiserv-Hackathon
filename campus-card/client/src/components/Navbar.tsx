@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { Bell, UserCircle2 } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+// import BalanceAnalysisPage from "./BalanceAnalysisPage";
 
 const Navbar: React.FC = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const { user, logout } = useAuth0();
+  const navigate = useNavigate();
 
   const notifications = [
     { id: 1, label: "Payment posted for Campus Bookstore", fresh: true },
     { id: 2, label: "You earned 120 campus reward points", fresh: true },
     { id: 3, label: "Security reminder: update recovery question", fresh: false },
   ];
+
+  const routes: Record<string, string> = {
+    "Dashboard": "/",
+    "Credit Score": "/credit-score",
+    "Credit Transfers": "/credit-transfers",
+    "Balance Analysis": "./balance-analysis",
+    "Student Services": "/student-services",
+    "On Campus Events": "/events",
+    "Profile": "/profile"
+  };
 
   return (
     <header className="w-full bg-prussian text-white shadow-md">
@@ -96,14 +109,17 @@ const Navbar: React.FC = () => {
           {/* Second set: nav options */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-medium">
             {[
+              "Dashboard",
               "Credit Score",
               "Credit Transfers",
               "Balance Analysis",
               "Student Services",
               "On Campus Events",
+              "Profile"
             ].map((item) => (
               <button
                 key={item}
+                onClick={() => navigate(routes[item])}
                 className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blaze hover:after:w-full after:transition-all"
               >
                 {item}

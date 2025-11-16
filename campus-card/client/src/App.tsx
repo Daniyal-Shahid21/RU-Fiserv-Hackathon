@@ -1,22 +1,12 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
 import WelcomePage from "./components/WelcomePage";
 import Dashboard from "./components/Dashboard";
-<<<<<<< HEAD
-import Profile from "./components/Profile";
 import BalanceAnalysisPage from "./components/BalanceAnalysisPage";
-
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<WelcomePage />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/balance/analysis" element={<BalanceAnalysisPage />} />
-    </Routes>
-  );
-}
-=======
+import Profile from "./components/Profile";
 
 const App: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -29,8 +19,40 @@ const App: React.FC = () => {
     );
   }
 
-  return isAuthenticated ? <Dashboard /> : <WelcomePage />;
+  return (
+    <div className="bg-white min-h-screen flex flex-col">
+      {/* ------ Navbar only when authenticated ------ */}
+      {isAuthenticated && <Navbar />}
+
+      <main className="flex-grow">
+        <Routes>
+
+          {/* ------ Public route (Unauthenticated homepage) ------
+          <Route path="/" element={<WelcomePage />} /> */}
+
+          {/* ------ Protected routes ------ */}
+          <Route
+            path="/"
+            element={isAuthenticated ? <Dashboard /> : <WelcomePage />}
+          />
+
+          <Route
+            path="/balance-analysis"
+            element={isAuthenticated ? <BalanceAnalysisPage /> : <WelcomePage />}
+          />
+
+          <Route
+            path="/profile"
+            element={isAuthenticated ? <Profile /> : <WelcomePage />}
+          />
+
+        </Routes>
+      </main>
+
+      {/* Optional global footer */}
+      {/* <Footer /> */}
+    </div>
+  );
 };
->>>>>>> 915c237d9d6c357deb6c4306475f3c78d5fbe459
 
 export default App;

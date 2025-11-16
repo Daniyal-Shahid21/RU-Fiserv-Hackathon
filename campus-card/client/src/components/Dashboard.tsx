@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 
 type Transaction = {
   id: number;
@@ -60,7 +60,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="flex-1 flex flex-col items-center py-6 md:py-10">
         <div className="w-[90%] md:w-[70%] mx-auto space-y-6 md:space-y-8">
