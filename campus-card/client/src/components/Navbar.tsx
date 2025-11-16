@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   const routes: Record<string, string> = {
-    "Credit Score": "/credit-score",
     "Credit Transfers": "/credit-transfers",
     "Balance Analysis": "/balance-analysis",
     "Student Services": "/student-services",
@@ -45,7 +44,6 @@ const Navbar: React.FC = () => {
           {/* Text nav options */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-medium">
             {[
-              "Credit Score",
               "Credit Transfers",
               "Balance Analysis",
               "Student Services",
