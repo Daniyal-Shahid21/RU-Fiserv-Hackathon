@@ -1,0 +1,93 @@
+: Page
+- Segment
+. Feature
+* AI Feature
+
+
+
+www.campuscard/signin.com
+	user_signin.html:
+		.Account creation-
+			.Authentication email
+			.User setup
+				- Connecting to existing school
+				- Connecting to existing bank account
+				- Connecting with friends at that school (Skippable)
+				- Give us data? (Not skippable7)
+
+		.Sign in
+			- Configure current school
+			- Configure current bank accounts
+			- Add friends at that school
+				
+
+
+
+www.campuscard/user/homepage.com
+	- Hamburger Menu
+		: $CS Credit Score
+			- Claim bonuses/Previous Bonuses
+
+
+		: $BA Balance Analysis
+
+
+		: On campus event/volunteering
+
+
+		: Student services
+			- Textbooks
+			- Campus Amenities {Makerspace, Bulk Printing, VMs}
+			
+			- Meal swipes/ Dining
+			- Daily Parking Passes
+				- Bill splitting
+
+
+		: Automating Payments
+
+
+		: Credit transfer page
+
+
+
+	- Current balance / IF overdraft
+
+	- Brief overview of transactions
+		: $BA Balance Analysis
+			-* CSV Data breakdown / AI interpretation
+			-* Budgeting Prediction
+
+	- Transaction summary for day
+		
+	- Currently available bonuses
+		: $CS Credit Score
+
+
+
+
+Database
+	Users TB
+		Name
+		Email
+		Address
+		Phone number
+		Security questions 1-3
+		Banks
+		Schools
+		Card
+		Friends
+	Schools TB
+	Card TB
+		Balance
+		Limit
+		Credit Score
+		Bank Accounts to pull from
+	Transactions TB
+		Card association
+
+AI 
+	Campus Jobs TB
+	Campus Events TB
+	Services TB
+	
