@@ -10,8 +10,8 @@ import Profile from "./components/Profile";
 import BoardingPage from "./components/BoardingPage";
 // import CreditScorePage from "./components/CreditScorePage";
 import CreditTransfer from "./components/CreditTransfer";
-// import StudentServicesPage from "./components/StudentServicesPage";
-// import EventsPage from "./components/EventsPage";
+import StudentServices from "./components/StudentServices.tsx";
+import EventPage from "./components/EventPage.tsx";
 
 const App: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -58,6 +58,14 @@ const App: React.FC = () => {
           <Route
             path="/credit-transfers"
             element={isAuthenticated ? <CreditTransfer /> : <WelcomePage />}
+          />
+          <Route
+            path="/student-services"
+            element={isAuthenticated ? <StudentServices /> : <WelcomePage />}
+          />
+          <Route
+            path="/student-services"
+            element={isAuthenticated ? <EventPage /> : <WelcomePage />}
           />
         </Routes>
       </main>
