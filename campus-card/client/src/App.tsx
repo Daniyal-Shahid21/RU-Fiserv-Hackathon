@@ -7,6 +7,10 @@ import WelcomePage from "./components/WelcomePage";
 import Dashboard from "./components/Dashboard";
 import BalanceAnalysisPage from "./components/BalanceAnalysisPage";
 import Profile from "./components/Profile";
+// import CreditScorePage from "./components/CreditScorePage";
+// import CreditTransfersPage from "./components/CreditTransfersPage";
+// import StudentServicesPage from "./components/StudentServicesPage";
+// import EventsPage from "./components/EventsPage";
 
 const App: React.FC = () => {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -21,36 +25,30 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
-      {/* ------ Navbar only when authenticated ------ */}
+      {/* Navbar only when authenticated */}
       {isAuthenticated && <Navbar />}
 
       <main className="flex-grow">
         <Routes>
-
-          {/* ------ Public route (Unauthenticated homepage) ------
-          <Route path="/" element={<WelcomePage />} /> */}
-
-          {/* ------ Protected routes ------ */}
+          {/* Root: dashboard when authed, welcome when not */}
           <Route
             path="/"
             element={isAuthenticated ? <Dashboard /> : <WelcomePage />}
           />
 
+          {/* Balance Analysis */}
           <Route
             path="/balance-analysis"
             element={isAuthenticated ? <BalanceAnalysisPage /> : <WelcomePage />}
           />
 
+          {/* Profile page (person icon) */}
           <Route
             path="/profile"
             element={isAuthenticated ? <Profile /> : <WelcomePage />}
           />
-
         </Routes>
       </main>
-
-      {/* Optional global footer */}
-      {/* <Footer /> */}
     </div>
   );
 };

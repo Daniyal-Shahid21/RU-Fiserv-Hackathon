@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Bell, UserCircle2 } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-// import BalanceAnalysisPage from "./BalanceAnalysisPage";
 
 const Navbar: React.FC = () => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -16,24 +15,26 @@ const Navbar: React.FC = () => {
   ];
 
   const routes: Record<string, string> = {
-    "Dashboard": "/",
     "Credit Score": "/credit-score",
     "Credit Transfers": "/credit-transfers",
-    "Balance Analysis": "./balance-analysis",
+    "Balance Analysis": "/balance-analysis",
     "Student Services": "/student-services",
     "On Campus Events": "/events",
-    "Profile": "/profile"
   };
 
   return (
     <header className="w-full bg-prussian text-white shadow-md">
       <div className="w-[90%] md:w-[70%] mx-auto flex items-center justify-between h-16 md:h-20">
-        {/* Left: logo */}
-        <div className="flex items-center gap-2">
+        {/* Left: logo (click -> dashboard) */}
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 focus:outline-none"
+        >
           <div className="w-9 h-9 rounded-2xl bg-blaze flex items-center justify-center shadow-lg">
             <span className="text-xs font-bold tracking-tight">SC</span>
           </div>
-          <div className="leading-tight">
+          <div className="leading-tight text-left">
             <p className="text-xs uppercase tracking-[0.25em] text-slate-300">
               Smart Campus
             </p>
@@ -41,14 +42,61 @@ const Navbar: React.FC = () => {
               Wallet Dashboard
             </p>
           </div>
-        </div>
+        </button>
 
         {/* Right side */}
-        <div className="flex items-center gap-8">
-          {/* First set: icons */}
+        <div className="flex items-center gap-10">
+          {/* Text nav options */}
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-medium">
+            {[
+              "Credit Score",
+              "Credit Transfers",
+              "Balance Analysis",
+              "Student Services",
+              "On Campus Events",
+            ].map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => navigate(routes[item])}
+                className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blaze hover:after:w-full after:transition-all"
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+
+          {/* Icon cluster: profile then notifications */}
           <div className="flex items-center gap-4 relative">
-            {/* Bell */}
+            {/* Profile icon (click -> profile) */}
             <button
+              type="button"
+              onClick={() => navigate("/profile")}
+              className="flex items-center gap-1 rounded-full p-1 hover:bg-white/10 transition"
+            >
+              <UserCircle2 className="w-6 h-6" />
+              <div className="hidden md:flex flex-col text-left">
+                <span className="text-[11px] text-slate-200">
+                  {user?.name || user?.email || "Student"}
+                </span>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    });
+                  }}
+                  className="text-[10px] text-slate-300 underline underline-offset-2 hover:text-white"
+                >
+                  Sign out
+                </button>
+              </div>
+            </button>
+
+            {/* Notifications bell */}
+            <button
+              type="button"
               className="relative rounded-full p-2 hover:bg-white/10 transition"
               onClick={() => setShowNotifications((v) => !v)}
             >
@@ -86,46 +134,7 @@ const Navbar: React.FC = () => {
                 </ul>
               </div>
             )}
-
-            {/* User icon */}
-            <div className="flex items-center gap-1">
-              <UserCircle2 className="w-6 h-6" />
-              <div className="hidden md:flex flex-col">
-                <span className="text-[11px] text-slate-200">
-                  {user?.name || user?.email || "Student"}
-                </span>
-                <button
-                  onClick={() =>
-                    logout({ logoutParams: { returnTo: window.location.origin } })
-                  }
-                  className="text-[10px] text-slate-300 underline underline-offset-2 hover:text-white"
-                >
-                  Sign out
-                </button>
-              </div>
-            </div>
           </div>
-
-          {/* Second set: nav options */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-medium">
-            {[
-              "Dashboard",
-              "Credit Score",
-              "Credit Transfers",
-              "Balance Analysis",
-              "Student Services",
-              "On Campus Events",
-              "Profile"
-            ].map((item) => (
-              <button
-                key={item}
-                onClick={() => navigate(routes[item])}
-                className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blaze hover:after:w-full after:transition-all"
-              >
-                {item}
-              </button>
-            ))}
-          </nav>
         </div>
       </div>
     </header>

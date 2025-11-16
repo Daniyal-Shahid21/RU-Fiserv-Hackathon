@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-// import Navbar from "./Navbar";
 
 type Transaction = {
   id: number;
