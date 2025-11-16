@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { Bell, UserCircle2 } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from "./NotificationContext";
 
 const Navbar: React.FC = () => {
+  const { notifications } = useNotifications();
   const [showNotifications, setShowNotifications] = useState(false);
   const { user, logout } = useAuth0();
   const navigate = useNavigate();
-
-  const notifications = [
-    { id: 1, label: "Payment posted for Campus Bookstore", fresh: true },
-    { id: 2, label: "You earned 120 campus reward points", fresh: true },
-    { id: 3, label: "Security reminder: update recovery question", fresh: false },
-  ];
 
   const routes: Record<string, string> = {
     "Credit Score": "/credit-score",
@@ -75,22 +71,25 @@ const Navbar: React.FC = () => {
               className="flex items-center gap-1 rounded-full p-1 hover:bg-white/10 transition"
             >
               <UserCircle2 className="w-6 h-6" />
+
               <div className="hidden md:flex flex-col text-left">
                 <span className="text-[11px] text-slate-200">
                   {user?.name || user?.email || "Student"}
                 </span>
-                <button
-                  type="button"
+
+                {/* Fixed element — no nested button now */}
+                <span
+                  role="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     logout({
                       logoutParams: { returnTo: window.location.origin },
                     });
                   }}
-                  className="text-[10px] text-slate-300 underline underline-offset-2 hover:text-white"
+                  className="text-[10px] text-slate-300 underline underline-offset-2 hover:text-white cursor-pointer"
                 >
                   Sign out
-                </button>
+                </span>
               </div>
             </button>
 

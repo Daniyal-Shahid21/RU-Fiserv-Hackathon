@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNotifications } from "../components/NotificationContext";
+import { useNotifications } from "./NotificationContext";
 
 export default function CreditTransfer() {
   const { addNotification } = useNotifications();

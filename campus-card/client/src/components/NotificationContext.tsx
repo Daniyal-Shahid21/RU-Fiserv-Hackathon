@@ -1,4 +1,3 @@
-// src/context/NotificationContext.tsx
 import React, { createContext, useContext, useState } from "react";
 
 type Notification = {

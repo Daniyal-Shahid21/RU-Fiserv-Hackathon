@@ -9,7 +9,7 @@ import BalanceAnalysisPage from "./components/BalanceAnalysisPage";
 import Profile from "./components/Profile";
 import BoardingPage from "./components/BoardingPage";
 // import CreditScorePage from "./components/CreditScorePage";
-// import CreditTransfersPage from "./components/CreditTransfersPage";
+import CreditTransfer from "./components/CreditTransfer";
 // import StudentServicesPage from "./components/StudentServicesPage";
 // import EventsPage from "./components/EventsPage";
 
@@ -40,7 +40,9 @@ const App: React.FC = () => {
           {/* Balance Analysis */}
           <Route
             path="/balance-analysis"
-            element={isAuthenticated ? <BalanceAnalysisPage /> : <WelcomePage />}
+            element={
+              isAuthenticated ? <BalanceAnalysisPage /> : <WelcomePage />
+            }
           />
 
           {/* Profile page (person icon) */}
@@ -49,13 +51,15 @@ const App: React.FC = () => {
             element={isAuthenticated ? <Profile /> : <WelcomePage />}
           />
 
-
           <Route
             path="/boarding"
             element={isAuthenticated ? <BoardingPage /> : <WelcomePage />}
           />
+          <Route
+            path="/credit-transfers"
+            element={isAuthenticated ? <CreditTransfer /> : <WelcomePage />}
+          />
         </Routes>
-
       </main>
     </div>
   );

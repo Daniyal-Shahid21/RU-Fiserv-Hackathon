@@ -4,6 +4,7 @@ import App from "./App";
 import "./index.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter } from "react-router-dom";
+import { NotificationProvider } from "./components/NotificationContext";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN as string;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID as string;
@@ -20,7 +21,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       }}
       cacheLocation="localstorage"
     >
-      <BrowserRouter><App /></BrowserRouter>
+      <BrowserRouter>
+        <NotificationProvider>
+          <App />
+        </NotificationProvider>
+      </BrowserRouter>
     </Auth0Provider>
   </React.StrictMode>
 );
